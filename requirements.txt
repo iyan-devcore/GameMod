@@ -1,0 +1,8 @@
+fonttools>=4.50
+uharfbuzz>=0.40
+PySide6-Essentials>=6.7
+requests>=2.31
+keyring>=25
+PyYAML>=6
+pytest>=8
+Pillow>=10
