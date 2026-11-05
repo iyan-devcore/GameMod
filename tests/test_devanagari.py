@@ -68,6 +68,14 @@ def test_too_many_clusters_is_an_error():
         assign_codepoints([chr(0x10000 + i) for i in range(PUA_END - PUA_START + 2)])
 
 
+def test_assign_codepoints_with_skip():
+    mapping = assign_codepoints(["क", "ख", "ग"], start=0xF000, skip=(0xF001, 0xF002))
+    assert mapping["क"] == 0xF000
+    assert mapping["ख"] == 0xF003
+    assert mapping["ग"] == 0xF004
+
+
+
 @NEEDS_GAME
 @pytest.mark.parametrize(
     "name,weight",

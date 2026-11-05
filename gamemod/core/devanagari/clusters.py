@@ -48,13 +48,25 @@ def find_broken_marks(text: str) -> list[str]:
     return [c for c in iter_clusters(text) if _ORPHAN.match(c)]
 
 
-def assign_codepoints(clusters: Iterable[str], start: int = PUA_START) -> dict[str, int]:
+def assign_codepoints(
+    clusters: Iterable[str],
+    start: int = PUA_START,
+    skip: Iterable[int] = (),
+) -> dict[str, int]:
+    skip_set = set(skip)
     ordered = sorted(set(clusters))
-    if start + len(ordered) - 1 > PUA_END:
-        raise TooManyClusters(
-            f"{len(ordered)} clusters do not fit in {PUA_END - start + 1} Private Use slots"
-        )
-    return {cluster: start + i for i, cluster in enumerate(ordered)}
+    mapping: dict[str, int] = {}
+    cur = start
+    for cluster in ordered:
+        while cur in skip_set:
+            cur += 1
+        if cur > PUA_END:
+            raise TooManyClusters(
+                f"{len(ordered)} clusters do not fit in Private Use slots up to U+{PUA_END:04X}"
+            )
+        mapping[cluster] = cur
+        cur += 1
+    return mapping
 
 
 def encode_text(text: str, mapping: dict[str, int]) -> str:
