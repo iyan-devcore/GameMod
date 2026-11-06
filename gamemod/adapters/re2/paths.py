@@ -4,11 +4,21 @@ from __future__ import annotations
 HEALTHWARNING_PATH_PL = "natives/stm/hikako/ui/ui1000/tex/healthwarning.tex.34.pl"
 HEALTHWARNING_PATH_EN = "natives/stm/hikako/ui/ui1000/tex/healthwarning.tex.34.en"
 
-# Subtitle and UI fonts for Latin script
+# Every Latin-script font in the game's GUI config (guiconfig.gcf), with the Hindi weight that
+# suits each. The game showed boxes when only the Helvetica fonts had Hindi, so subtitles use
+# another one, most likely a CAP font. Fonts for Japanese, Chinese, Korean, Arabic and Thai
+# are left alone, as is a pixel font without Polish letters.
+_FONT_DIR = "natives/stm/sectionroot/ui/ui0000/font/"
 FONTS = {
-    "natives/stm/sectionroot/ui/ui0000/font/helveticaneueltw1g-mdcn.oft.1.x64": 500,
-    "natives/stm/sectionroot/ui/ui0000/font/helveticaneueltw1g-cn.oft.1.x64": 400,
-    "natives/stm/sectionroot/ui/ui0000/font/neuehelveticapro-69cmmd.oft.1.x64": 500,
+    _FONT_DIR + "helveticaneueltw1g-mdcn.oft.1.x64": 500,
+    _FONT_DIR + "helveticaneueltw1g-cn.oft.1.x64": 400,
+    _FONT_DIR + "neuehelveticapro-69cmmd.oft.1.x64": 500,
+    _FONT_DIR + "cap-udkakugoc70latin-m.oft.1.x64": 500,
+    _FONT_DIR + "cap-udkakugosmalllatin-m.oft.1.x64": 500,
+    _FONT_DIR + "cap-tsukugolatin-d.oft.1.x64": 600,
+    _FONT_DIR + "americantypeitcpro-med.oft.1.x64": 500,
+    _FONT_DIR + "ocratributepro-regular.oft.1.x64": 400,
+    _FONT_DIR + "courbd.oft.1.x64": 700,
 }
 
 ACTIVE_MSG_PATHS: tuple[str, ...] = (

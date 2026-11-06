@@ -49,6 +49,9 @@ class GameAdapter(ABC):
     required_files: tuple[str, ...] = ()  # files only this game's folder has
     folder_hint: str = "the game's main folder"
     game_path: Path | None = None
+    # True when each line's speaker is known: translators always see the hint, and repeated
+    # lines are not shared, because two speakers can need different Hindi for the same English.
+    lines_depend_on_speaker: bool = False
 
     @classmethod
     def is_game_folder(cls, folder: Path) -> bool:

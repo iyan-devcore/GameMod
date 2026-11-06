@@ -38,3 +38,4 @@ def encrypt_font(font_bytes: bytes) -> bytes:
     """Encrypt standard TTF/OTF bytes into an RE Engine .oft.1 font file."""
     encrypted_body = crypt_font(bytearray(font_bytes))
     return FONT_FBFO_MAGIC + bytes(encrypted_body)
+

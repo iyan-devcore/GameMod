@@ -155,3 +155,4 @@ class MsgFile:
 
         full_data = modified + appended_pool
         return encrypt_msg(full_data, self._data_off)
+

@@ -39,14 +39,14 @@ def can_share_translation(text: str) -> bool:
     return not mentions_person(text)
 
 
-def lines_to_translate(store: Store) -> list[Item]:
+def lines_to_translate(store: Store, share_repeats: bool = True) -> list[Item]:
     """Every unfinished line in scene order, leaving out repeats that can share a translation."""
     items = store.pending(10**7) + store.pending(10**7, status=st.RETRY)
     items.sort(key=lambda item: item.first_order)
     seen: set[str] = set()
     unique: list[Item] = []
     for item in items:
-        if can_share_translation(item.source):
+        if share_repeats and can_share_translation(item.source):
             if item.source in seen:
                 continue
             seen.add(item.source)

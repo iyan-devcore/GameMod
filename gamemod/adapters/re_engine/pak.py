@@ -181,3 +181,4 @@ def write_pak(
         for h_low, h_hi, offset, size in entries_meta:
             # 48 bytes: h_low(4), h_hi(4), offset(8), c_size(8), u_size(8), flags(8)=0, checksum(8)=0
             f.write(struct.pack("<IIQQQQQ", h_low, h_hi, offset, size, size, 0, 0))
+

@@ -7,4 +7,4 @@ PyYAML>=6
 pytest>=8
 Pillow>=10
 zstandard>=0.22
-
+skia-pathops>=0.8

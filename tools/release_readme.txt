@@ -15,6 +15,10 @@ HOW TO USE
 4. Click the game, then turn on the "Hindi Subtitles" switch.
 5. Start the game and choose Hindi. For The Last of Us Part I:
      Options > Language > Subtitles > हिन्दी
+   For Resident Evil 2, pick Polish. The game never shows the word Hindi:
+     Options > Language > Display Language > Polish [pl]
+   For Marvel's Spider-Man Remastered, pick Danish. Menus and voices stay English:
+     Settings > Text Language > Danish
 
 TO GO BACK TO ENGLISH
 Choose English in the same game menu. To remove the mod completely, close the game and

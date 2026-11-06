@@ -63,6 +63,26 @@ def _shaper(weight: int) -> _Shaper:
     return _Shaper(weight)
 
 
+def cluster_outlines(
+    mapping: Mapping[str, int],
+    weight: int,
+    units_per_em: int,
+    style: FontStyle = FontStyle(),
+):
+    """Yield (code, outline, advance) for each cluster, drawn for a font of the given em size.
+
+    The outline is in that font's units with y pointing up, for engines whose fonts are not
+    TrueType or OpenType files. `style.tracking` is per 1000 units of em.
+    """
+    shaper = _shaper(weight)
+    factor = style.scale * units_per_em / shaper.upem
+    y_shift = style.y_shift * units_per_em / 1000
+    tracking = style.tracking * units_per_em / 1000
+    for cluster, code in mapping.items():
+        recording, advance = shaper.outline(cluster, factor, y_shift)
+        yield code, recording, max(0, otRound(advance + tracking))
+
+
 def merge_into_font(
     font_bytes: bytes,
     mapping: Mapping[str, int],
@@ -117,8 +137,9 @@ def merge_into_font(
     if not is_cff:
         font["post"].formatType = 3.0  # glyph names are not needed and would add size
 
+    # A game may read either character table, so every Unicode one gets the new letters.
     for table in font["cmap"].tables:
-        if table.format == 4:
+        if table.format in (4, 12):
             table.cmap.update(new_codes)
 
     if "DSIG" in font:

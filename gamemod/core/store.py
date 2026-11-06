@@ -265,6 +265,14 @@ class Store:
                 (PENDING, start, end, DONE, REVIEW, FAILED, RETRY),
             ).rowcount
 
+    def item_keys(self) -> dict[int, list[str]]:
+        """The game line keys that use each item."""
+        out: dict[int, list[str]] = {}
+        with self._lock:
+            for item_id, key in self._db.execute("SELECT item_id, key FROM lines"):
+                out.setdefault(item_id, []).append(key)
+        return out
+
     def line_targets(self) -> dict[str, dict[str, str]]:
         """Finished text for every line that has a usable translation."""
         marks = ",".join("?" * len(USABLE))

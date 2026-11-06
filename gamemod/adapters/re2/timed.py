@@ -5,7 +5,7 @@ import re
 from typing import Sequence
 
 TIME_TAG_RE = re.compile(r"<TIME [^>]+>")
-LEADING_TIMES_RE = re.compile(r"^(?:\s*<TIME [^>]+>\s*)+")
+LEADING_TIMES_RE = re.compile(r"^(?:\s*<TIME [^>]+>\s*)*")  # some scene entries have pages only
 
 
 def is_timed_entry(text: str) -> bool:
@@ -52,3 +52,4 @@ def build_timed_entry(
     """Reconstruct a timed entry from leading time tags and translated pieces."""
     body = "<PAGE>".join(prefix + core + suffix for prefix, core, suffix in pieces)
     return leading + body
+
