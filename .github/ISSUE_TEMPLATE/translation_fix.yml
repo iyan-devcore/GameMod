@@ -1,0 +1,36 @@
+name: Fix a Hindi line
+description: A subtitle is wrong, unclear, sounds unnatural or doesn't match what is said.
+labels: [translation]
+body:
+  - type: dropdown
+    id: game
+    attributes:
+      label: Game
+      options:
+        - The Last of Us Part I
+        - Resident Evil 2
+        - Marvel's Spider-Man Remastered
+    validations:
+      required: true
+  - type: textarea
+    id: hindi
+    attributes:
+      label: The Hindi line as it shows now
+      description: Type it or paste a screenshot.
+    validations:
+      required: true
+  - type: textarea
+    id: english
+    attributes:
+      label: What the character says in English
+      description: If you know it.
+  - type: textarea
+    id: better
+    attributes:
+      label: A better Hindi line
+      description: Your suggestion, if you have one.
+  - type: input
+    id: where
+    attributes:
+      label: Where in the game
+      description: The chapter, mission or scene, so the line can be found.

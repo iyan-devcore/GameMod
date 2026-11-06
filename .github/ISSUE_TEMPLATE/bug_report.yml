@@ -1,0 +1,32 @@
+name: Something doesn't work
+description: GameMod won't start, the switch fails, or the game shows boxes or English instead of Hindi.
+labels: [bug]
+body:
+  - type: dropdown
+    id: game
+    attributes:
+      label: Game
+      options:
+        - The Last of Us Part I
+        - Resident Evil 2
+        - Marvel's Spider-Man Remastered
+        - GameMod itself
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: GameMod version
+      description: The release you downloaded, such as v1.0.0.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what happened instead. Copy any message GameMod showed.
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Drag images here. A screenshot of GameMod's message or of the game helps a lot.
